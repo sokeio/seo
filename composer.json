@@ -1,0 +1,23 @@
+{
+    "name": "byteplatform/seo",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nguyen Van Hau",
+            "email": "nguyenvanhaudev@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": ["BytePlatform\\Seo\\SeoServiceProvider"],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "BytePlatform\\Seo\\": "src",
+            "BytePlatform\\Seo\\Database\\Factories\\": "database/factories",
+            "BytePlatform\\Seo\\Database\\Seeders\\": "database/seeders"
+        }
+    }
+}

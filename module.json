@@ -1,0 +1,12 @@
+{
+    "id":"module-seo-d5d34e3f-654b-49c8-9504-01b01e3ea5ec1723422",
+    "name": "Seo",
+    "version":"v1.0.0",
+    "alias": "seo",
+    "description": "",
+    "keywords": [],
+    "priority": 200,
+    "aliases": {},
+    "namespace":"BytePlatform\\Seo",
+    "requires": []
+}
