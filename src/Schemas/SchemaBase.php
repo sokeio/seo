@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace BytePlatform\Seo\Schemas;
 
 use ArrayAccess;
 use BytePlatform\Seo\Exceptions\InvalidProperty;
@@ -8,7 +8,6 @@ use DateTime;
 use DateTimeInterface;
 use JsonSerializable;
 use ReflectionClass;
-
 abstract class SchemaBase implements ArrayAccess, JsonSerializable
 {
     /** @var array */
