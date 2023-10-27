@@ -8,7 +8,7 @@ use DateTime;
 use DateTimeInterface;
 use JsonSerializable;
 use ReflectionClass;
-abstract class SchemaBase implements ArrayAccess, JsonSerializable
+abstract class Schema implements ArrayAccess, JsonSerializable
 {
     /** @var array */
     protected $properties = [];

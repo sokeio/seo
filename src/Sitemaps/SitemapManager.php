@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace BytePlatform\Seo\Sitemaps;
 
 use ArrayAccess;
 use JsonSerializable;
