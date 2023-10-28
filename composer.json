@@ -1,30 +1,32 @@
 {
-    "name": "byteplatform/seo",
-    "description": "",
-    "authors": [
-        {
-            "name": "Nguyen Van Hau",
-            "email": "nguyenvanhaudev@gmail.com"
-        }
-    ],
-    "require": {
-      "byteplatform/laravel": "^1.0.1"
-    },
-    "extra": {
-        "laravel": {
-            "providers": ["BytePlatform\\Seo\\SeoServiceProvider"],
-            "aliases": {}
-        }
-    },
-    "autoload": {
-        "files": [
-          "helpers/constraint.php",
-          "helpers/function.php"
-        ],
-        "psr-4": {
-            "BytePlatform\\Seo\\": "src",
-            "BytePlatform\\Seo\\Database\\Factories\\": "database/factories",
-            "BytePlatform\\Seo\\Database\\Seeders\\": "database/seeders"
-        }
+  "name": "byteplatform/seo",
+  "description": "",
+  "authors": [
+    {
+      "name": "Nguyen Van Hau",
+      "email": "nguyenvanhaudev@gmail.com"
     }
+  ],
+  "require": {
+    "byteplatform/laravel": "^1.0.1"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "BytePlatform\\Seo\\SeoServiceProvider"
+      ],
+      "aliases": {}
+    }
+  },
+  "autoload": {
+    "files": [
+      "helpers/constraint.php",
+      "helpers/function.php"
+    ],
+    "psr-4": {
+      "BytePlatform\\Seo\\": "src",
+      "BytePlatform\\Seo\\Database\\Factories\\": "database/factories",
+      "BytePlatform\\Seo\\Database\\Seeders\\": "database/seeders"
+    }
+  }
 }

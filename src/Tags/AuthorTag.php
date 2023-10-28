@@ -3,6 +3,7 @@
 namespace BytePlatform\Seo\Tags;
 
 use BytePlatform\Seo\SEOData;
+use BytePlatform\Seo\Support\MetaTag;
 
 class AuthorTag extends MetaTag
 {
@@ -10,7 +11,7 @@ class AuthorTag extends MetaTag
     {
         $author = $SEOData?->author;
 
-        if ( ! $author ) {
+        if (!$author) {
             return null;
         }
 

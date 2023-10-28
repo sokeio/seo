@@ -67,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BytePlatform/Laravel.git",
-                "reference": "3573ce87f48d808a282a62ef1d8117ecf4cd30df"
+                "reference": "b6bce78b6287ffa6b429647961768e69b13b51a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BytePlatform/Laravel/zipball/3573ce87f48d808a282a62ef1d8117ecf4cd30df",
-                "reference": "3573ce87f48d808a282a62ef1d8117ecf4cd30df",
+                "url": "https://api.github.com/repos/BytePlatform/Laravel/zipball/b6bce78b6287ffa6b429647961768e69b13b51a5",
+                "reference": "b6bce78b6287ffa6b429647961768e69b13b51a5",
                 "shasum": ""
             },
             "require": {
@@ -116,7 +116,7 @@
                 "issues": "https://github.com/BytePlatform/Laravel/issues",
                 "source": "https://github.com/BytePlatform/Laravel/tree/v1.0.1"
             },
-            "time": "2023-10-27T17:55:44+00:00"
+            "time": "2023-10-28T02:26:54+00:00"
         },
         {
             "name": "byteplatform/seo",
@@ -124,7 +124,7 @@
             "dist": {
                 "type": "path",
                 "url": "./..",
-                "reference": "4dffa6bb861aec87d779529c51b2febce07450ef"
+                "reference": "2a6aa01e5a8b6bb78fc43577ff7afd5d34984b12"
             },
             "require": {
                 "byteplatform/laravel": "^1.0.1"
@@ -139,6 +139,10 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "helpers/constraint.php",
+                    "helpers/function.php"
+                ],
                 "psr-4": {
                     "BytePlatform\\Seo\\": "src",
                     "BytePlatform\\Seo\\Database\\Factories\\": "database/factories",

@@ -3,6 +3,8 @@
 namespace BytePlatform\Seo\Tags;
 
 use BytePlatform\Seo\SEOData;
+use BytePlatform\Seo\Support\LinkTag;
+use BytePlatform\Seo\Support\RenderableCollection;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 

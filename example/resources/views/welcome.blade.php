@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
-    @if(function_exists('seo_header_render'))
-    {!! seo_header_render() !!}
+    @if (function_exists('seo_header_render'))
+        {!! seo_header_render() !!}
+    @else
+        <title>Laravel</title>)
     @endif
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

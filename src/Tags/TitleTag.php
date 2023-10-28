@@ -3,6 +3,7 @@
 namespace BytePlatform\Seo\Tags;
 
 use BytePlatform\Seo\SEOData;
+use BytePlatform\Seo\Support\Tag;
 
 class TitleTag extends Tag
 {

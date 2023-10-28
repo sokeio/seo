@@ -2,8 +2,8 @@
 
 namespace BytePlatform\Seo;
 
-use BytePlatform\Seo\Support\AuthorTag;
-use BytePlatform\Seo\Support\CanonicalTag;
+use BytePlatform\Seo\Tags\AuthorTag;
+use BytePlatform\Seo\Tags\CanonicalTag;
 use BytePlatform\Seo\Tags\DescriptionTag;
 use BytePlatform\Seo\Tags\FaviconTag;
 use BytePlatform\Seo\Tags\ImageTag;
