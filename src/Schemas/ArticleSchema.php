@@ -28,7 +28,7 @@ class ArticleSchema extends Schema
 
     public function addAuthor(string $authorName): static
     {
-        if ( empty($this->authors) ) {
+        if (empty($this->authors)) {
             $this->authors = [
                 '@type' => 'Person',
                 'name' => $authorName,
@@ -62,12 +62,12 @@ class ArticleSchema extends Schema
         ];
 
         foreach ($properties as $markupProperty => $SEODataProperty) {
-            if ( $SEOData->{$SEODataProperty} ) {
+            if ($SEOData->{$SEODataProperty}) {
                 $this->{$markupProperty} = $SEOData->{$SEODataProperty};
             }
         }
 
-        if ( $SEOData->author ) {
+        if ($SEOData->author) {
             $this->authors = [
                 '@type' => 'Person',
                 'name' => $SEOData->author,
