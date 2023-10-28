@@ -2,170 +2,45 @@
 
 namespace BytePlatform\Seo\Schemas;
 
-use ArrayAccess;
-use BytePlatform\Seo\Exceptions\InvalidProperty;
-use DateTime;
-use DateTimeInterface;
-use JsonSerializable;
-use ReflectionClass;
-abstract class Schema implements ArrayAccess, JsonSerializable
+use BytePlatform\Laravel\Pipe\Pipeable;
+use BytePlatform\Seo\SEOData;
+use BytePlatform\Seo\Support\Tag;
+use Closure;
+use Illuminate\Support\Collection;
+
+abstract class Schema extends Tag
 {
-    /** @var array */
-    protected $properties = [];
+    use Pipeable;
 
-    /** @var string */
-    protected $nonce = '';
+    public array $attributes = [
+        'type' => 'application/ld+json',
+    ];
 
-    public function getContext(): string
+    public string $context = 'https://schema.org/';
+
+    public Collection $markup;
+
+    public array $markupTransformers = [];
+
+    public string $tag = 'script';
+
+    public function __construct(SEOData $SEOData, array $markupBuilders = [])
     {
-        return 'https://schema.org';
+        $this->initializeMarkup($SEOData, $markupBuilders);
+
+        $this->pipeThrough($markupBuilders);
+
+        $this->inner = $this->generateInner();
     }
 
-    public function getType(): string
-    {
-        return (new ReflectionClass($this))->getShortName();
-    }
+    abstract public function generateInner(): string;
 
-    public function setProperty(string $property, $value)
+    abstract public function initializeMarkup(SEOData $SEOData, array $markupBuilders): void;
+
+    public function markup(Closure $transformer): static
     {
-        if ($value !== null && $value !== '') {
-            $this->properties[$property] = $value;
-        }
+        $this->markupTransformers[] = $transformer;
 
         return $this;
-    }
-
-    public function addProperties(array $properties)
-    {
-        foreach ($properties as $property => $value) {
-            $this->setProperty($property, $value);
-        }
-
-        return $this;
-    }
-
-    public function if($condition, $callback)
-    {
-        if ($condition) {
-            $callback($this);
-        }
-
-        return $this;
-    }
-
-    public function setNonce(string $nonce)
-    {
-        $this->nonce = $nonce;
-
-        return $this;
-    }
-
-    public function getProperty(string $property, $default = null)
-    {
-        return $this->properties[$property] ?? $default;
-    }
-
-    public function getProperties(): array
-    {
-        return $this->properties;
-    }
-
-    public function offsetExists($offset): bool
-    {
-        return array_key_exists($offset, $this->properties);
-    }
-
-    public function offsetGet($offset): mixed
-    {
-        return $this->getProperty($offset);
-    }
-
-    public function offsetSet($offset, $value): void
-    {
-        $this->setProperty($offset, $value);
-    }
-
-    public function offsetUnset($offset): void
-    {
-        unset($this->properties[$offset]);
-    }
-
-    public function toArray(): array
-    {
-        $this->serializeIdentifier();
-        $properties = $this->serializeProperty($this->getProperties());
-
-        return [
-            '@context' => $this->getContext(),
-            '@type' => $this->getType(),
-        ] + $properties;
-    }
-
-    protected function serializeProperty($property)
-    {
-        if (is_array($property)) {
-            return array_map([$this, 'serializeProperty'], $property);
-        }
-
-        if ($property instanceof Type) {
-            $property = $property->toArray();
-            unset($property['@context']);
-        }
-
-        if ($property instanceof DateTimeInterface) {
-            $property = $property->format(DateTime::ATOM);
-        }
-
-        if (is_object($property) && method_exists($property, '__toString')) {
-            $property = (string) $property;
-        }
-
-        if (is_object($property)) {
-            throw new InvalidProperty();
-        }
-
-        return $property;
-    }
-
-    protected function serializeIdentifier()
-    {
-        if (
-            isset($this['identifier'])
-            && !$this['identifier'] instanceof Type
-        ) {
-            $this->setProperty('@id', $this['identifier']);
-            unset($this['identifier']);
-        }
-    }
-
-    public function nonceAttr(): string
-    {
-        if ($this->nonce) {
-            $attr = ' nonce="' . $this->nonce . '"';
-        } else {
-            $attr = '';
-        }
-
-        return $attr;
-    }
-
-    public function toScript(): string
-    {
-        return '<script type="application/ld+json"' . $this->nonceAttr() . '>' . json_encode($this->toArray(), JSON_UNESCAPED_UNICODE) . '</script>';
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return $this->toArray();
-    }
-
-    public function __call(string $method, array $arguments)
-    {
-        return $this->setProperty($method, $arguments[0] ?? '');
-    }
-
-    public function __toString(): string
-    {
-        return $this->toScript();
     }
 }
