@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static mix renderSitemapIndex()
  * @method static void addSitemap($location, $lastModified = null)
+ * @method static array getSitemaps();
  * @method static void clearSitemaps()
  * @method static mix renderSitemap()
  * @method static void addItem($location, $lastModified = null, $changeFrequency = null, $priority = null)
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Facade;
  * @method static void clearItems()
  * @method static void clear()
  * @method static bool hasCachedView();
- * @method static void Route()
  * 
  */
 class Sitemap extends Facade
