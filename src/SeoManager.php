@@ -1,10 +1,60 @@
 <?php
 
 namespace BytePlatform\Seo;
+
 use Closure;
 
 class SEOManager
 {
+    /**
+     * Changes every time it is accessed.
+     *
+     * @var string
+     */
+    public const SITEMAP_ALWAYS = 'always';
+
+    /**
+     * Changes hourly.
+     *
+     * @var string
+     */
+    public const SITEMAP_HOURLY = 'hourly';
+
+    /**
+     * Changes daily.
+     *
+     * @var string
+     */
+    public const SITEMAP_DAILY = 'daily';
+
+    /**
+     * Changes weekly.
+     *
+     * @var string
+     */
+    public const SITEMAP_WEEKLY = 'weekly';
+
+    /**
+     * Changes monthly.
+     *
+     * @var string
+     */
+    public const SITEMAP_MONTHLY = 'monthly';
+
+    /**
+     * Changes yearly.
+     *
+     * @var string
+     */
+    public const SITEMAP_YEARLY = 'yearly';
+
+    /**
+     * Never changes, archived content.
+     *
+     * @var string
+     */
+    public const SITEMAP_NEVER = 'never';
+    
     protected array $tagTransformers = [];
 
     protected array $SEODataTransformers = [];

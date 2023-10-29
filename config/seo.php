@@ -30,7 +30,11 @@ return [
      * to the root domain and not relative to the current URL. The `spatie/laravel-sitemap` package
      * is a great package to generate sitemaps for your application.
      */
-    'sitemap' => null,
+    'sitemap' => [
+        'url' => 'sitemap.xml',
+        'cache_enabled' => false,
+        'cache_length' => 1440
+    ],
 
     /**
      * Use this setting to specify whether you want self-referencing `<link rel="canonical" href="$url">` tags to
