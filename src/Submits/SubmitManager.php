@@ -18,42 +18,6 @@ class SubmitManager
         return $code >= 200 && $code < 300;
     }
     /**
-     * Engines to inform
-     * @var array
-     */
-    protected $engines =
-    [
-        'https://www.google.com',
-        'https://www.bing.com',
-        'https://webmaster.yandex.com'
-    ];
-
-    /**
-     * Initialize new sitemap bing
-     *
-     * @param array $append
-     */
-    public function __construct(array $append = [])
-    {
-        if (empty($append) === false) {
-            $this->engines = array_unique(array_merge($this->engines, $append));
-        }
-    }
-
-    /**
-     * Send sitemap url to registred engines
-     *
-     * @param  string $sitemapUrl
-     * @return void
-     */
-    public function send(string $sitemapUrl): void
-    {
-        foreach ($this->engines as $engine) {
-            $this->inform($engine, $sitemapUrl);
-        }
-    }
-
-    /**
      * Inform search engine
      *
      * @param  string $engine
@@ -62,11 +26,38 @@ class SubmitManager
      */
     public function inform(string $engine, string $url): void
     {
-        $req = curl_init("{$engine}/ping?sitemap={$url}");
+        $req = curl_init("https://{$engine}/ping?sitemap={$url}");
         curl_setopt($req, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($req, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($req, CURLOPT_RETURNTRANSFER, 1);
         curl_exec($req);
         curl_close($req);
+    }
+    /**
+     * Send  url to IndexNow
+     *
+     * @param  string| array $url
+     * @param  array $engines
+     * @return void
+     */
+    public function sendUrl(string| array $url, $host, $engines = []): void
+    {
+        if (!is_array($url)) $url = [$url];
+        foreach (array_merge(config('seo.submit.indexNow',  []), $engines ?? [])  as $engine => $key) {
+            $this->index($engine, $key, $url, $host);
+        }
+    }
+    /**
+     * Send sitemap url to registred engines
+     *
+     * @param  string $sitemapUrl
+     * @param  array $engines
+     * @return void
+     */
+    public function sendSitemap(string $sitemapUrl, $engines = []): void
+    {
+        foreach (array_merge(config('seo.submit.index',  []), $engines ?? [])  as $engine) {
+            $this->inform($engine, $sitemapUrl);
+        }
     }
 }

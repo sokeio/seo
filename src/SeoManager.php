@@ -2,6 +2,7 @@
 
 namespace BytePlatform\Seo;
 
+use BytePlatform\Seo\Submits\SubmitManager;
 use Closure;
 
 class SEOManager
@@ -54,7 +55,7 @@ class SEOManager
      * @var string
      */
     public const SITEMAP_NEVER = 'never';
-    
+
     protected array $tagTransformers = [];
 
     protected array $SEODataTransformers = [];
@@ -81,5 +82,13 @@ class SEOManager
     public function getSEODataTransformers(): array
     {
         return $this->SEODataTransformers;
+    }
+    public function SendSitemap($sitemap, $append = [])
+    {
+        return (new SubmitManager($append))->sendSitemap($sitemap);
+    }
+    public function IndexNow($url)
+    {
+        return (new SubmitManager([]))->index($url);
     }
 }
