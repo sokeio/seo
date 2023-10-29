@@ -39,6 +39,7 @@ return [
      */
     'sitemap' => [
         'url' => 'sitemap.xml',
+        'route_enabled' => true,
         'cache_enabled' => false,
         'cache_length' => 1440
     ],

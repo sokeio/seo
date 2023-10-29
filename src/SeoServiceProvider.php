@@ -5,6 +5,8 @@ namespace BytePlatform\Seo;
 use Illuminate\Support\ServiceProvider;
 use BytePlatform\Laravel\ServicePackage;
 use BytePlatform\Laravel\WithServiceProvider;
+use BytePlatform\Seo\Facades\Sitemap;
+use Illuminate\Support\Facades\Route;
 
 class SeoServiceProvider extends ServiceProvider
 {
@@ -35,11 +37,15 @@ class SeoServiceProvider extends ServiceProvider
     private function bootGate()
     {
         if (!$this->app->runningInConsole()) {
-            
         }
     }
     public function packageBooted()
     {
         $this->bootGate();
+        if (config('seo.sitemap.route_enabled')) {
+            Route::group(['middleware' => 'web'], function () {
+                Sitemap::Route();
+            });
+        }
     }
 }
