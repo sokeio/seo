@@ -83,12 +83,12 @@ class SEOManager
     {
         return $this->SEODataTransformers;
     }
-    public function SendSitemap($sitemap, $append = [])
+    public function SendSitemap($sitemap, $engines = [])
     {
-        return (new SubmitManager($append))->sendSitemap($sitemap);
+        return SubmitManager::sendSitemap($sitemap, $engines);
     }
-    public function IndexNow($url)
+    public function IndexNow(string| array $url, $host, $engines = [])
     {
-        return (new SubmitManager([]))->index($url);
+        return SubmitManager::sendUrl($url, $host, $engines);
     }
 }

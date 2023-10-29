@@ -5,7 +5,7 @@ namespace BytePlatform\Seo\Submits;
 class SubmitManager
 {
 
-    public function index(string $engine, string $apiKey, array $urls, $host): bool
+    public static function index(string $engine, string $apiKey, array $urls, $host): bool
     {
         $ch = curl_init("https://{$engine}/indexnow");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['host' => $host, 'key' => $apiKey, 'urlList' => $urls]));
@@ -24,7 +24,7 @@ class SubmitManager
      * @param  string $url
      * @return void
      */
-    public function inform(string $engine, string $url): void
+    public static function inform(string $engine, string $url): void
     {
         $req = curl_init("https://{$engine}/ping?sitemap={$url}");
         curl_setopt($req, CURLOPT_FOLLOWLOCATION, true);
@@ -40,11 +40,11 @@ class SubmitManager
      * @param  array $engines
      * @return void
      */
-    public function sendUrl(string| array $url, $host, $engines = []): void
+    public static function sendUrl(string| array $url, $host, $engines = []): void
     {
         if (!is_array($url)) $url = [$url];
         foreach (array_merge(config('seo.submit.indexNow',  []), $engines ?? [])  as $engine => $key) {
-            $this->index($engine, $key, $url, $host);
+            self::index($engine, $key, $url, $host);
         }
     }
     /**
@@ -54,10 +54,10 @@ class SubmitManager
      * @param  array $engines
      * @return void
      */
-    public function sendSitemap(string $sitemapUrl, $engines = []): void
+    public static function sendSitemap(string $sitemapUrl, $engines = []): void
     {
         foreach (array_merge(config('seo.submit.index',  []), $engines ?? [])  as $engine) {
-            $this->inform($engine, $sitemapUrl);
+            self::inform($engine, $sitemapUrl);
         }
     }
 }
