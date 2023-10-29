@@ -95,11 +95,11 @@ class SEOManager
     }
     public function Route()
     {
-        add_action('SEO_SITEMAP_INDEX', function () {
-            Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'post']));
-            Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'tag']));
-            Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'page']));
-        });
+        // add_action('SEO_SITEMAP_INDEX', function () {
+        //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'post']));
+        //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'tag']));
+        //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'page']));
+        // });
         // add_action('SEO_SITEMAP_POST', function ($sitemap) {
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 2]));
