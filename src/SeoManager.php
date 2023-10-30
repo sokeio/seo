@@ -116,41 +116,50 @@ class SEOManager
         //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
         //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
         // });
-        Route::get('robots.txt', function () {
-            $Robots = new Robots();
-            Sitemap::clear();
-            do_action('SEO_SITEMAP_INDEX');
-            foreach (Sitemap::getSitemaps() as $item) {
-                $Robots->sitemap($item->getLocation());
-            }
-            $Robots->bot('*', ['disallow' => ['']]);
-            return response($Robots, 200)
-                ->header('Content-Type', 'text/plain');
-        });
-        Route::get('sitemap.xml', function () {
-            return redirect(url('sitemap_index.xml'));
-        });
-        Route::get('sitemap_index.xml', function () {
-            if (!Sitemap::hasCachedView()) {
-                Sitemap::clear();
-                do_action('SEO_SITEMAP_INDEX');
-            }
-            return Sitemap::renderSitemapIndex();
-        })->name('sitemap_index');
+        if (config('seo.robots.route_enabled')) {
+            Route::group(['middleware' => 'web'], function () {
+                Route::get('robots.txt', function () {
+                    $robots = new Robots();
+                    Sitemap::clear();
+                    do_action('SEO_SITEMAP_INDEX');
+                    foreach (Sitemap::getSitemaps() as $item) {
+                        $robots->sitemap($item->getLocation());
+                    }
+                    $robots->bot('*', ['disallow' => ['']]);
+                    $robots = apply_filters('SEO_ROBOT_TXT', $robots);
+                    return response($robots, 200)
+                        ->header('Content-Type', 'text/plain');
+                });
+            });
+        }
+        if (config('seo.sitemap.route_enabled')) {
+            Route::group(['middleware' => 'web'], function () {
+                Route::get('sitemap.xml', function () {
+                    return redirect(url('sitemap_index.xml'));
+                });
+                Route::get('sitemap_index.xml', function () {
+                    if (!Sitemap::hasCachedView()) {
+                        Sitemap::clear();
+                        do_action('SEO_SITEMAP_INDEX');
+                    }
+                    return Sitemap::renderSitemapIndex();
+                })->name('sitemap_index');
 
-        Route::get('sitemap_{sitemap}_{page?}.xml', function ($sitemap, $page = 0) {
-            if (!Sitemap::hasCachedView()) {
-                Sitemap::clear();
-                do_action('SEO_SITEMAP_PAGE_' . str($sitemap)->upper(), $page);
-            }
-            return Sitemap::renderSitemap();
-        })->name('sitemap_page');
-        Route::get('sitemap_{sitemap}.xml', function ($sitemap, $page = 0) {
-            if (!Sitemap::hasCachedView()) {
-                Sitemap::clear();
-                do_action('SEO_SITEMAP_' . str($sitemap)->upper(), $sitemap);
-            }
-            return Sitemap::renderSitemapIndex();
-        })->name('sitemap_type');
+                Route::get('sitemap_{sitemap}_{page?}.xml', function ($sitemap, $page = 0) {
+                    if (!Sitemap::hasCachedView()) {
+                        Sitemap::clear();
+                        do_action('SEO_SITEMAP_PAGE_' . str($sitemap)->upper(), $page);
+                    }
+                    return Sitemap::renderSitemap();
+                })->name('sitemap_page');
+                Route::get('sitemap_{sitemap}.xml', function ($sitemap, $page = 0) {
+                    if (!Sitemap::hasCachedView()) {
+                        Sitemap::clear();
+                        do_action('SEO_SITEMAP_' . str($sitemap)->upper(), $sitemap);
+                    }
+                    return Sitemap::renderSitemapIndex();
+                })->name('sitemap_type');
+            });
+        }
     }
 }

@@ -42,10 +42,6 @@ class SeoServiceProvider extends ServiceProvider
     public function packageBooted()
     {
         $this->bootGate();
-        if (config('seo.sitemap.route_enabled')) {
-            Route::group(['middleware' => 'web'], function () {
-                SEO::Route();
-            });
-        }
+        SEO::Route();
     }
 }
