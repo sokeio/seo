@@ -2,7 +2,7 @@
 
 namespace BytePlatform\Seo\Sitemap;
 
-class ImageTag extends ItemBase
+class ImageItem extends ItemBase
 {
     /**
      * The caption of the image.
