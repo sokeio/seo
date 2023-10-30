@@ -6,6 +6,7 @@ use BytePlatform\Seo\Facades\Sitemap;
 use BytePlatform\Seo\Submits\SubmitManager;
 use Illuminate\Support\Facades\Route;
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 
 class SEOManager
 {
@@ -61,11 +62,11 @@ class SEOManager
     protected array $tagTransformers = [];
 
     protected array $SEODataTransformers = [];
-
+    protected Model|SEOData|null $source = null;
+    
     public function SEODataTransformer(Closure $transformer): static
     {
         $this->SEODataTransformers[] = $transformer;
-
         return $this;
     }
 
@@ -75,7 +76,9 @@ class SEOManager
 
         return $this;
     }
-
+    public function for(Model|SEOData|null $source = null)
+    {
+    }
     public function getTagTransformers(): array
     {
         return $this->tagTransformers;
@@ -85,6 +88,10 @@ class SEOManager
     {
         return $this->SEODataTransformers;
     }
+    public function getSource()
+    {
+        return $this->source;
+    }
     public function SendSitemap($sitemap, $engines = [])
     {
         return SubmitManager::sendSitemap($sitemap, $engines);
@@ -93,6 +100,7 @@ class SEOManager
     {
         return SubmitManager::sendUrl($url, $host, $engines);
     }
+
     public function Route()
     {
         // add_action('SEO_SITEMAP_INDEX', function () {
