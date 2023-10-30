@@ -5,7 +5,7 @@ use BytePlatform\Seo\TagManager;
 use Illuminate\Database\Eloquent\Model;
 
 if (!function_exists('seo_header_render')) {
-    function seo_header_render(Model|SEOData $source = null)
+    function seo_header_render(Model|SEOData|null $source = null)
     {
         $tagManager = app(TagManager::class);
 
