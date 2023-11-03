@@ -16,19 +16,20 @@ class SchemaCollection extends Collection
     ];
 
     public array $markup = [];
-
-    public function addArticle(Closure $builder = null): static
+    public function addClass($class, Closure $builder = null): static
     {
-        $this->markup[$this->dictionary['article']][] = $builder ?: fn (Schema $schema): Schema => $schema;
+        $this->markup[$class][] = $builder ?: fn (Schema $schema): Schema => $schema;
 
         return $this;
+    }
+    public function addArticle(Closure $builder = null): static
+    {
+        return $this->addClass($this->dictionary['article'], $builder);
     }
 
     public function addBreadcrumbs(Closure $builder = null): static
     {
-        $this->markup[$this->dictionary['breadcrumbs']][] = $builder ?: fn (Schema $schema): Schema => $schema;
-
-        return $this;
+        return $this->addClass($this->dictionary['breadcrumbs'], $builder);
     }
 
     public static function initialize(): static
