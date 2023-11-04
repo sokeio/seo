@@ -7,7 +7,7 @@ use BytePlatform\Laravel\Pipe\Pipeable;
 use Carbon\CarbonInterface;
 
 class SEOData extends JsonData
-{
+{ 
     use Pipeable;
     public function __construct(
         public ?string $title = null,
@@ -17,8 +17,8 @@ class SEOData extends JsonData
         public ?string $url = null,
         public bool $enableTitleSuffix = true,
         public ?ImageMeta $imageMeta = null,
-        public ?CarbonInterface $published_time = null,
-        public ?CarbonInterface $modified_time = null,
+        public ?CarbonInterface $datePublished = null,
+        public ?CarbonInterface $dateModified = null,
         public ?string $articleBody = null,
         public ?string $section = null,
         public ?array $tags = null,

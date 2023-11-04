@@ -3,6 +3,7 @@
 namespace BytePlatform\Seo\Schemas;
 
 use BytePlatform\Seo\SEOData;
+use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;
 
@@ -56,8 +57,8 @@ class ArticleSchema extends Schema
             'headline' => 'title',
             'description' => 'description',
             'image' => 'image',
-            'datePublished' => 'published_time',
-            'dateModified' => 'modified_time',
+            'datePublished' => 'datePublished',
+            'dateModified' => 'dateModified',
             'articleBody' => 'articleBody',
         ];
 
@@ -84,8 +85,8 @@ class ArticleSchema extends Schema
                 '@type' => 'WebPage',
                 '@id' => $this->url,
             ],
-            'datePublished' => $this->datePublished->toIso8601String(),
-            'dateModified' => $this->dateModified->toIso8601String(),
+            'datePublished' => ($this->datePublished ?? Carbon::now())->toIso8601String(),
+            'dateModified' => ($this->dateModified ?? Carbon::now())->toIso8601String(),
             'headline' => $this->headline,
         ])
             ->when($this->authors, fn (Collection $collection): Collection => $collection->put('author', $this->authors))
