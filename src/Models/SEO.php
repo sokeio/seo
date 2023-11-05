@@ -37,8 +37,8 @@ class SEO extends Model
             image: $overrides?->image ?? $this->image,
             url: $overrides?->url ?? null,
             enableTitleSuffix: $enableTitleSuffix ?? true,
-            datePublished: $overrides?->published_time ?? ($this->model?->created_at ?? null),
-            dateModified: $overrides?->modified_time ?? ($this->model?->updated_at ?? null),
+            datePublished: $overrides?->datePublished ?? ($this->model?->created_at ?? null),
+            dateModified: $overrides?->dateModified ?? ($this->model?->updated_at ?? null),
             articleBody: $overrides?->articleBody ?? null,
             section: $overrides?->section ?? null,
             tags: $overrides?->tags ?? null,
@@ -56,9 +56,9 @@ class SEO extends Model
         $dataSEO->author = $this->author ?? $dataSEO->author;
         $dataSEO->image = $this->image ?? $dataSEO->image;
         $dataSEO->datePublished = $this->model?->created_at  ?? $dataSEO->datePublished;
-        $dataSEO->datePublished = $this->model?->updated_at  ?? $dataSEO->datePublished;
+        $dataSEO->dateModified = $this->model?->updated_at  ?? $dataSEO->dateModified;
         $dataSEO->robots = $this->robots ?? $dataSEO->robots;
-        $dataSEO->title = $this->canonical_url ?? $dataSEO->canonical_url;
+        $dataSEO->canonical_url = $this->canonical_url ?? $dataSEO->canonical_url;
         return $dataSEO;
     }
 }
