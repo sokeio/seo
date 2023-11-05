@@ -17,7 +17,7 @@ class SEO extends Model
         return $this->morphTo();
     }
 
-    public function prepareForUsage(): SEOData
+    public function prepareForUsage($overrides = null): SEOData
     {
         if (method_exists($this->model, 'getDynamicSEOData')) {
             /** @var SEOData $overrides */
@@ -31,22 +31,34 @@ class SEO extends Model
         }
 
         return new SEOData(
-            title: $overrides->title ?? $this->title,
-            description: $overrides->description ?? $this->description,
-            author: $overrides->author ?? $this->author,
-            image: $overrides->image ?? $this->image,
-            url: $overrides->url ?? null,
+            title: $overrides?->title ?? $this->title,
+            description: $overrides?->description ?? $this->description,
+            author: $overrides?->author ?? $this->author,
+            image: $overrides?->image ?? $this->image,
+            url: $overrides?->url ?? null,
             enableTitleSuffix: $enableTitleSuffix ?? true,
-            published_time: $overrides->published_time ?? ($this->model?->created_at ?? null),
-            modified_time: $overrides->modified_time ?? ($this->model?->updated_at ?? null),
-            articleBody: $overrides->articleBody ?? null,
-            section: $overrides->section ?? null,
-            tags: $overrides->tags ?? null,
-            schema: $overrides->schema ?? null,
-            type: $overrides->type ?? null,
-            locale: $overrides->locale ?? null,
-            robots: $overrides->robots ?? $this->robots,
-            canonical_url: $overrides->canonical_url ?? $this->canonical_url,
+            datePublished: $overrides?->published_time ?? ($this->model?->created_at ?? null),
+            dateModified: $overrides?->modified_time ?? ($this->model?->updated_at ?? null),
+            articleBody: $overrides?->articleBody ?? null,
+            section: $overrides?->section ?? null,
+            tags: $overrides?->tags ?? null,
+            schema: $overrides?->schema ?? null,
+            type: $overrides?->type ?? null,
+            locale: $overrides?->locale ?? null,
+            robots: $overrides?->robots ?? $this->robots,
+            canonical_url: $overrides?->canonical_url ?? $this->canonical_url,
         );
+    }
+    public function fillForSeo(SEOData $dataSEO = null): SEOData
+    {
+        $dataSEO->title = $this->title ?? $dataSEO->title;
+        $dataSEO->description = $this->description ?? $dataSEO->description;
+        $dataSEO->author = $this->author ?? $dataSEO->author;
+        $dataSEO->image = $this->image ?? $dataSEO->image;
+        $dataSEO->datePublished = $this->model?->created_at  ?? $dataSEO->datePublished;
+        $dataSEO->datePublished = $this->model?->updated_at  ?? $dataSEO->datePublished;
+        $dataSEO->robots = $this->robots ?? $dataSEO->robots;
+        $dataSEO->title = $this->canonical_url ?? $dataSEO->canonical_url;
+        return $dataSEO;
     }
 }
