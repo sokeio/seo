@@ -1,12 +1,12 @@
 <?php
 
-namespace BytePlatform\Seo\Tags;
+namespace Sokeio\Seo\Tags;
 
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\Support\RenderableCollection;
-use BytePlatform\Seo\Support\TwitterCardTag;
-use BytePlatform\Seo\Tags\TwitterCard\Summary;
-use BytePlatform\Seo\Tags\TwitterCard\SummaryLargeImage;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\Support\RenderableCollection;
+use Sokeio\Seo\Support\TwitterCardTag;
+use Sokeio\Seo\Tags\TwitterCard\Summary;
+use Sokeio\Seo\Tags\TwitterCard\SummaryLargeImage;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 

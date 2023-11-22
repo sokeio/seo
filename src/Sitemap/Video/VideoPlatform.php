@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Sitemap\Video;
+namespace Sokeio\Seo\Sitemap\Video;
 
 
 class VideoPlatform

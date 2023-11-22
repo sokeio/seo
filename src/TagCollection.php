@@ -1,18 +1,18 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
-use BytePlatform\Seo\Tags\AuthorTag;
-use BytePlatform\Seo\Tags\CanonicalTag;
-use BytePlatform\Seo\Tags\DescriptionTag;
-use BytePlatform\Seo\Tags\FaviconTag;
-use BytePlatform\Seo\Tags\ImageTag;
-use BytePlatform\Seo\Tags\OpenGraphTags;
-use BytePlatform\Seo\Tags\RobotsTag;
-use BytePlatform\Seo\Tags\SchemaTagCollection;
-use BytePlatform\Seo\Tags\SitemapTag;
-use BytePlatform\Seo\Tags\TitleTag;
-use BytePlatform\Seo\Tags\TwitterCardTags;
+use Sokeio\Seo\Tags\AuthorTag;
+use Sokeio\Seo\Tags\CanonicalTag;
+use Sokeio\Seo\Tags\DescriptionTag;
+use Sokeio\Seo\Tags\FaviconTag;
+use Sokeio\Seo\Tags\ImageTag;
+use Sokeio\Seo\Tags\OpenGraphTags;
+use Sokeio\Seo\Tags\RobotsTag;
+use Sokeio\Seo\Tags\SchemaTagCollection;
+use Sokeio\Seo\Tags\SitemapTag;
+use Sokeio\Seo\Tags\TitleTag;
+use Sokeio\Seo\Tags\TwitterCardTags;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 

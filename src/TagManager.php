@@ -1,8 +1,8 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
-use BytePlatform\Seo\Facades\SEO;
+use Sokeio\Seo\Facades\SEO;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 

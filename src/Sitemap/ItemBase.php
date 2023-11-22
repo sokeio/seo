@@ -1,9 +1,9 @@
 <?php
 
-namespace BytePlatform\Seo\Sitemap;
+namespace Sokeio\Seo\Sitemap;
 
 use ArrayAccess;
-use BytePlatform\Seo\Sitemap\Video\VideoItem;
+use Sokeio\Seo\Sitemap\Video\VideoItem;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 

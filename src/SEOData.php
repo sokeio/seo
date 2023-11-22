@@ -1,9 +1,9 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
-use BytePlatform\Laravel\JsonData;
-use BytePlatform\Laravel\Pipe\Pipeable;
+use Sokeio\Laravel\JsonData;
+use Sokeio\Laravel\Pipe\Pipeable;
 use Carbon\CarbonInterface;
 
 class SEOData extends JsonData

@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Support;
+namespace Sokeio\Seo\Support;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\View\View;

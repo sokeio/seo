@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Submits;
+namespace Sokeio\Seo\Submits;
 
 class SubmitManager
 {

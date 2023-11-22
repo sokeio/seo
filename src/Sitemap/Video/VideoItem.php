@@ -1,8 +1,8 @@
 <?php
 
-namespace BytePlatform\Seo\Sitemap\Video;
+namespace Sokeio\Seo\Sitemap\Video;
 
-use BytePlatform\Seo\Sitemap\ItemBase;
+use Sokeio\Seo\Sitemap\ItemBase;
 use DateTime;
 
 class VideoItem extends ItemBase

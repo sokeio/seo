@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
 use Exception;
 

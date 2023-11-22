@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Sitemap;
+namespace Sokeio\Seo\Sitemap;
 
 class SitemapItem extends ItemBase
 {

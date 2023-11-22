@@ -1,8 +1,8 @@
 <?php
 
-namespace BytePlatform\Seo\Models;
+namespace Sokeio\Seo\Models;
 
-use BytePlatform\Seo\SEOData;
+use Sokeio\Seo\SEOData;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 

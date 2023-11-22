@@ -1,17 +1,17 @@
 <?php
 
-namespace BytePlatform\Seo\Facades;
+namespace Sokeio\Seo\Facades;
 
 use Closure;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Database\Eloquent\Model;
-use BytePlatform\Seo\SEOData;
+use Sokeio\Seo\SEOData;
 
 /**
  * @method static array getSEODataTransformers()
  * @method static array getTagTransformers()
- * @method static \BytePlatform\Seo\SEOManager SEODataTransformer( Closure $transformer )
- * @method static \BytePlatform\Seo\SEOManager tagTransformer( Closure $transformer )
+ * @method static \Sokeio\Seo\SEOManager SEODataTransformer( Closure $transformer )
+ * @method static \Sokeio\Seo\SEOManager tagTransformer( Closure $transformer )
  * @method static Model|SEOData|null getSource();
  * @method static for(Model|SEOData|null $source = null)
  * @method static mix SendSitemap($sitemap, $engines = [])
@@ -22,6 +22,6 @@ class SEO extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \BytePlatform\Seo\SEOManager::class;
+        return \Sokeio\Seo\SEOManager::class;
     }
 }

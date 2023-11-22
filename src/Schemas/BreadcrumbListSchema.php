@@ -1,8 +1,8 @@
 <?php
 
-namespace BytePlatform\Seo\Schemas;
+namespace Sokeio\Seo\Schemas;
 
-use BytePlatform\Seo\SEOData;
+use Sokeio\Seo\SEOData;
 use Illuminate\Support\Collection;
 
 

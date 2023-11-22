@@ -9,7 +9,7 @@
             @if ($__tag->getLastModified())
                 <lastmod>{{ $__tag->getLastModified()->format('Y-m-d\TH:i:sP') }}</lastmod>
             @endif
-            @if ($__tag instanceof \BytePlatform\Seo\Sitemap\Tag)
+            @if ($__tag instanceof \Sokeio\Seo\Sitemap\Tag)
                 @if ($__tag->getChangeFrequency())
                     <changefreq>{{ $__tag->getChangeFrequency() }}</changefreq>
                 @endif
@@ -17,12 +17,12 @@
                     <priority>{{ $__tag->getPriority() }}</priority>
                 @endif
             @endif
-            @if ($__tag instanceof \BytePlatform\Seo\Sitemap\MultilingualTag)
+            @if ($__tag instanceof \Sokeio\Seo\Sitemap\MultilingualTag)
                 @foreach ($__tag->getMultilingual() as $lang => $href)
                     <xhtml:link rel="alternate" hreflang="{{ $lang }}" href="{{ $href }}" />
                 @endforeach
             @endif
-            @if ($__tag instanceof \BytePlatform\Seo\Sitemap\ExpiredTag)
+            @if ($__tag instanceof \Sokeio\Seo\Sitemap\ExpiredTag)
                 <expires>
                     <{{ $__tag->getExpired()->format('Y-m-d\TH:i:sP') }}< /expires>
             @endif

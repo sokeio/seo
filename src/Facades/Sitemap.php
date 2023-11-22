@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Facades;
+namespace Sokeio\Seo\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -21,6 +21,6 @@ class Sitemap extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \BytePlatform\Seo\Sitemap\SitemapManager::class;
+        return \Sokeio\Seo\Sitemap\SitemapManager::class;
     }
 }

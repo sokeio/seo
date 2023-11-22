@@ -1,10 +1,10 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
-use BytePlatform\Seo\Schemas\ArticleSchema;
-use BytePlatform\Seo\Schemas\BreadcrumbListSchema;
-use BytePlatform\Seo\Schemas\Schema;
+use Sokeio\Seo\Schemas\ArticleSchema;
+use Sokeio\Seo\Schemas\BreadcrumbListSchema;
+use Sokeio\Seo\Schemas\Schema;
 use Closure;
 use Illuminate\Support\Collection;
 

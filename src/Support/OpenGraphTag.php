@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Support;
+namespace Sokeio\Seo\Support;
 
 use Illuminate\Support\Collection;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace BytePlatform\Seo\Schemas;
+namespace Sokeio\Seo\Schemas;
 
-use BytePlatform\Laravel\Pipe\Pipeable;
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\Support\Tag;
+use Sokeio\Laravel\Pipe\Pipeable;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\Support\Tag;
 use Closure;
 use Illuminate\Support\Collection;
 

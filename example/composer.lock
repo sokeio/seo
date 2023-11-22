@@ -62,16 +62,16 @@
             "time": "2023-01-15T23:15:59+00:00"
         },
         {
-            "name": "byteplatform/laravel",
+            "name": "sokeio/laravel",
             "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/BytePlatform/Laravel.git",
+                "url": "https://github.com/Sokeio/Laravel.git",
                 "reference": "b6bce78b6287ffa6b429647961768e69b13b51a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BytePlatform/Laravel/zipball/b6bce78b6287ffa6b429647961768e69b13b51a5",
+                "url": "https://api.github.com/repos/Sokeio/Laravel/zipball/b6bce78b6287ffa6b429647961768e69b13b51a5",
                 "reference": "b6bce78b6287ffa6b429647961768e69b13b51a5",
                 "shasum": ""
             },
@@ -88,7 +88,7 @@
                 "branch-alias": {
                     "dev-master": "2.x-dev"
                 },
-                "class": "BytePlatform\\Laravel\\Plugin\\MergePlugin"
+                "class": "Sokeio\\Laravel\\Plugin\\MergePlugin"
             },
             "autoload": {
                 "files": [
@@ -96,7 +96,7 @@
                     "helpers/function.php"
                 ],
                 "psr-4": {
-                    "BytePlatform\\Laravel\\": "src/"
+                    "Sokeio\\Laravel\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -113,13 +113,13 @@
             ],
             "description": "Laravel package, merge plugin, hook filter action",
             "support": {
-                "issues": "https://github.com/BytePlatform/Laravel/issues",
-                "source": "https://github.com/BytePlatform/Laravel/tree/v1.0.1"
+                "issues": "https://github.com/Sokeio/Laravel/issues",
+                "source": "https://github.com/Sokeio/Laravel/tree/v1.0.1"
             },
             "time": "2023-10-28T02:26:54+00:00"
         },
         {
-            "name": "byteplatform/seo",
+            "name": "sokeio/seo",
             "version": "dev-main",
             "dist": {
                 "type": "path",
@@ -127,13 +127,13 @@
                 "reference": "2a6aa01e5a8b6bb78fc43577ff7afd5d34984b12"
             },
             "require": {
-                "byteplatform/laravel": "^1.0.1"
+                "sokeio/laravel": "^1.0.1"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "BytePlatform\\Seo\\SeoServiceProvider"
+                        "Sokeio\\Seo\\SeoServiceProvider"
                     ],
                     "aliases": []
                 }
@@ -144,9 +144,9 @@
                     "helpers/function.php"
                 ],
                 "psr-4": {
-                    "BytePlatform\\Seo\\": "src",
-                    "BytePlatform\\Seo\\Database\\Factories\\": "database/factories",
-                    "BytePlatform\\Seo\\Database\\Seeders\\": "database/seeders"
+                    "Sokeio\\Seo\\": "src",
+                    "Sokeio\\Seo\\Database\\Factories\\": "database/factories",
+                    "Sokeio\\Seo\\Database\\Seeders\\": "database/seeders"
                 }
             },
             "authors": [

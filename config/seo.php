@@ -1,6 +1,6 @@
 <?php
 
-use BytePlatform\Seo\Models\SEO;
+use Sokeio\Seo\Models\SEO;
 
 return [
     'name' => 'Seo',

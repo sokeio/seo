@@ -1,8 +1,8 @@
 <?php
 
-namespace BytePlatform\Seo\Schemas;
+namespace Sokeio\Seo\Schemas;
 
-use BytePlatform\Seo\SEOData;
+use Sokeio\Seo\SEOData;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Collection;

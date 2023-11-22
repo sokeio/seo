@@ -1,10 +1,10 @@
 <?php
 
-namespace BytePlatform\Seo\Tags\TwitterCard;
+namespace Sokeio\Seo\Tags\TwitterCard;
 
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\Support\RenderableCollection;
-use BytePlatform\Seo\Support\TwitterCardTag;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\Support\RenderableCollection;
+use Sokeio\Seo\Support\TwitterCardTag;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 

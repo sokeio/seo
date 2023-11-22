@@ -7,6 +7,6 @@
     "keywords": [],
     "priority": 200,
     "aliases": {},
-    "namespace":"BytePlatform\\Seo",
+    "namespace":"Sokeio\\Seo",
     "requires": []
 }

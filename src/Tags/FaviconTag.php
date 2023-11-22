@@ -1,9 +1,9 @@
 <?php
 
-namespace BytePlatform\Seo\Tags;
+namespace Sokeio\Seo\Tags;
 
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\Support\LinkTag;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\Support\LinkTag;
 use Illuminate\Support\Collection;
 
 class FaviconTag extends LinkTag

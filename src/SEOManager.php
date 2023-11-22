@@ -1,9 +1,9 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
-use BytePlatform\Seo\Facades\Sitemap;
-use BytePlatform\Seo\Submits\SubmitManager;
+use Sokeio\Seo\Facades\Sitemap;
+use Sokeio\Seo\Submits\SubmitManager;
 use Illuminate\Support\Facades\Route;
 use Closure;
 use Illuminate\Database\Eloquent\Model;

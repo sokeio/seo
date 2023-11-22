@@ -1,11 +1,11 @@
 <?php
 
-namespace BytePlatform\Seo\Tags;
+namespace Sokeio\Seo\Tags;
 
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\Support\MetaContentTag;
-use BytePlatform\Seo\Support\OpenGraphTag;
-use BytePlatform\Seo\Support\RenderableCollection;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\Support\MetaContentTag;
+use Sokeio\Seo\Support\OpenGraphTag;
+use Sokeio\Seo\Support\RenderableCollection;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 

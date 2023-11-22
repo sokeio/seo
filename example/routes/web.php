@@ -1,10 +1,10 @@
 <?php
 
-use BytePlatform\Seo\Facades\SEO;
-use BytePlatform\Seo\Facades\Sitemap;
-use BytePlatform\Seo\SchemaCollection;
-use BytePlatform\Seo\Schemas\ArticleSchema;
-use BytePlatform\Seo\SEOData;
+use Sokeio\Seo\Facades\SEO;
+use Sokeio\Seo\Facades\Sitemap;
+use Sokeio\Seo\SchemaCollection;
+use Sokeio\Seo\Schemas\ArticleSchema;
+use Sokeio\Seo\SEOData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 

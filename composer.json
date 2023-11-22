@@ -1,5 +1,5 @@
 {
-  "name": "byteplatform/seo",
+  "name": "sokeio/seo",
   "description": "",
   "authors": [
     {
@@ -8,12 +8,12 @@
     }
   ],
   "require": {
-    "byteplatform/laravel": "^1.0.2"
+    "sokeio/laravel": "^1.0.2"
   },
   "extra": {
     "laravel": {
       "providers": [
-        "BytePlatform\\Seo\\SeoServiceProvider"
+        "Sokeio\\Seo\\SeoServiceProvider"
       ],
       "aliases": {}
     }
@@ -24,9 +24,9 @@
       "helpers/function.php"
     ],
     "psr-4": {
-      "BytePlatform\\Seo\\": "src",
-      "BytePlatform\\Seo\\Database\\Factories\\": "database/factories",
-      "BytePlatform\\Seo\\Database\\Seeders\\": "database/seeders"
+      "Sokeio\\Seo\\": "src",
+      "Sokeio\\Seo\\Database\\Factories\\": "database/factories",
+      "Sokeio\\Seo\\Database\\Seeders\\": "database/seeders"
     }
   }
 }

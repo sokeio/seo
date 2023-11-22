@@ -1,6 +1,6 @@
 <?php
 
-namespace BytePlatform\Seo\Sitemap;
+namespace Sokeio\Seo\Sitemap;
 
 use DateTime;
 use Illuminate\Database\Eloquent\Model;

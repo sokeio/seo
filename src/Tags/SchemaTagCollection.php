@@ -1,10 +1,10 @@
 <?php
 
-namespace BytePlatform\Seo\Tags;
+namespace Sokeio\Seo\Tags;
 
-use BytePlatform\Seo\SchemaCollection;
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\Support\RenderableCollection;
+use Sokeio\Seo\SchemaCollection;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\Support\RenderableCollection;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 

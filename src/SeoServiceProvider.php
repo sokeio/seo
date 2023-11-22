@@ -1,11 +1,11 @@
 <?php
 
-namespace BytePlatform\Seo;
+namespace Sokeio\Seo;
 
 use Illuminate\Support\ServiceProvider;
-use BytePlatform\Laravel\ServicePackage;
-use BytePlatform\Laravel\WithServiceProvider;
-use BytePlatform\Seo\Facades\SEO;
+use Sokeio\Laravel\ServicePackage;
+use Sokeio\Laravel\WithServiceProvider;
+use Sokeio\Seo\Facades\SEO;
 use Illuminate\Support\Facades\Route;
 
 class SeoServiceProvider extends ServiceProvider

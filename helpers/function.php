@@ -1,8 +1,8 @@
 <?php
 
-use BytePlatform\Seo\Facades\SEO;
-use BytePlatform\Seo\SEOData;
-use BytePlatform\Seo\TagManager;
+use Sokeio\Seo\Facades\SEO;
+use Sokeio\Seo\SEOData;
+use Sokeio\Seo\TagManager;
 use Illuminate\Database\Eloquent\Model;
 
 if (!function_exists('seo_header_render')) {
