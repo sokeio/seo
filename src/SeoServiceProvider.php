@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Sokeio\Laravel\ServicePackage;
 use Sokeio\Laravel\WithServiceProvider;
 use Sokeio\Seo\Facades\SEO;
-use Illuminate\Support\Facades\Route;
 
 class SeoServiceProvider extends ServiceProvider
 {
