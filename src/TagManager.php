@@ -5,6 +5,7 @@ namespace Sokeio\Seo;
 use Sokeio\Seo\Facades\SEO;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
+use Sokeio\Facades\Theme;
 
 class TagManager implements Renderable
 {
@@ -24,10 +25,9 @@ class TagManager implements Renderable
     public function fillSEOData(SEOData $SEOData = null): SEOData
     {
         $SEOData ??= new SEOData();
-
         $defaults = [
-            'title' => config('seo.title.infer_title_from_url') ? $this->inferTitleFromUrl() : null,
-            'description' => config('seo.description.fallback'),
+            'title' => (config('seo.title.infer_title_from_url') ? $this->inferTitleFromUrl() : null) ?? Theme::getTitle(),
+            'description' => config('seo.description.fallback') ?? Theme::getDescription(),
             'image' => config('seo.image.fallback'),
             'site_name' => config('seo.site_name'),
             'author' => config('seo.author.fallback'),
