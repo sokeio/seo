@@ -31,27 +31,36 @@ trait HasSEO
     {
         return $this->canonical_url ?? '';
     }
-    public function addSEO(): static
+    public function prepareForUsage($overrides = null): SEOData
     {
-        $this->seo()->create([
-            'title' => $this->getSeoTitle(),
-            'description' => $this->getSeoDescription(),
-            'image' => $this->getSeoImage(),
-            'author' => $this->getSeoAuthor(),
-            'robots' => $this->getSeoRobots(),
-            'canonical_url' => $this->getSeoCanonicalUrl()
-        ]);
+        if (method_exists($this, 'getDynamicSEOData')) {
+            /** @var SEOData $overrides */
+            $overrides = $this->getDynamicSEOData();
+        }
 
-        return $this;
-    }
+        if (method_exists($this, 'enableTitleSuffix')) {
+            $enableTitleSuffix = $this->enableTitleSuffix();
+        } elseif (property_exists($this, 'enableTitleSuffix')) {
+            $enableTitleSuffix = $this->enableTitleSuffix;
+        }
 
-    protected static function bootHasSEO(): void
-    {
-        static::created(fn (self $model): self => $model->addSEO());
-    }
-
-    public function seo(): MorphOne
-    {
-        return $this->morphOne(config('seo.model'), 'model')->withDefault();
+        return new SEOData(
+            title: $overrides?->title ?? $this->getSeoTitle(),
+            description: $overrides?->description ?? $this->getSeoDescription(),
+            author: $overrides?->author ?? $this->getSeoAuthor(),
+            image: $overrides?->image ?? $this->getSeoImage(),
+            url: $overrides?->url ?? $this->getSeoCanonicalUrl(),
+            enableTitleSuffix: $enableTitleSuffix ?? true,
+            datePublished: $overrides?->datePublished ?? ($this?->created_at ?? null),
+            dateModified: $overrides?->dateModified ?? ($this?->updated_at ?? null),
+            articleBody: $overrides?->articleBody ?? null,
+            section: $overrides?->section ?? null,
+            tags: $overrides?->tags ?? null,
+            schema: $overrides?->schema ?? null,
+            type: $overrides?->type ?? null,
+            locale: $overrides?->locale ?? null,
+            robots: $overrides?->robots ?? $this->robots,
+            canonical_url: $overrides?->canonical_url ?? $this->canonical_url,
+        );
     }
 }

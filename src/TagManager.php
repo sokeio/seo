@@ -5,7 +5,6 @@ namespace Sokeio\Seo;
 use Sokeio\Seo\Facades\SEO;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
-use Sokeio\Facades\Theme;
 
 class TagManager implements Renderable
 {
@@ -25,15 +24,15 @@ class TagManager implements Renderable
     public function fillSEOData(SEOData $SEOData = null): SEOData
     {
         $SEOData ??= new SEOData();
-        $defaults = [
-            'title' => (config('seo.title.infer_title_from_url') ? $this->inferTitleFromUrl() : null) ?? Theme::getTitle(),
-            'description' => config('seo.description.fallback') ?? Theme::getDescription(),
+        $defaults = apply_filters("SEO_DATA_DEFAULT", [
+            'title' => (config('seo.title.infer_title_from_url') ? $this->inferTitleFromUrl() : null),
+            'description' => config('seo.description.fallback'),
             'image' => config('seo.image.fallback'),
             'site_name' => config('seo.site_name'),
             'author' => config('seo.author.fallback'),
             'twitter_username' => str(config('seo.twitter.@username'))->start('@'),
             'favicon' => config('seo.favicon'),
-        ];
+        ]);
 
         foreach ($defaults as $property => $defaultValue) {
             if ($SEOData->{$property} === null) {
@@ -83,7 +82,7 @@ class TagManager implements Renderable
         // The initializes will pass the generated SEOData to all underlying initializers, ensuring that
         // the tags are always fully up-to-date and no remnants from previous initializations are present.
         $SEOData = isset($this->model)
-            ? $this->model->seo?->prepareForUsage()
+            ? (isset($this->model->seo) ? $this->model->seo?->prepareForUsage() : $this->model->prepareForUsage())
             : $this->SEOData;
 
         $this->tags = TagCollection::initialize(
