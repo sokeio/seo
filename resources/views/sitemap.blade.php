@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     @if (isset($__hasImages) && $__hasImages) xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" @endif
     @if (isset($__hasVideos) && $__hasVideos) xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" @endif
