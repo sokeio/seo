@@ -151,6 +151,7 @@ class SEOManager
                         Sitemap::clear();
                         do_action('SEO_SITEMAP_INDEX');
                     }
+                    do_action('SEO_SITEMAP');
                     return Sitemap::renderSitemapIndex();
                 })->name('sitemap_index');
 
@@ -159,6 +160,7 @@ class SEOManager
                         Sitemap::clear();
                         do_action('SEO_SITEMAP_PAGE_' . str($sitemap)->upper(), $page);
                     }
+                    do_action('SEO_SITEMAP');
                     return Sitemap::renderSitemap();
                 })->name('sitemap_page');
                 Route::get('sitemap_{sitemap}.xml', function ($sitemap, $page = 0) {
@@ -166,6 +168,7 @@ class SEOManager
                         Sitemap::clear();
                         do_action('SEO_SITEMAP_' . str($sitemap)->upper(), $sitemap);
                     }
+                    do_action('SEO_SITEMAP');
                     return Sitemap::renderSitemapIndex();
                 })->name('sitemap_type');
             });
