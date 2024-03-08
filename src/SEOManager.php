@@ -102,7 +102,7 @@ class SEOManager
         return SubmitManager::sendUrl($url, $host, $engines);
     }
 
-    public function Route()
+    public function route()
     {
         // add_action('SEO_SITEMAP_INDEX', function () {
         //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'post']));
