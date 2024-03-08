@@ -41,6 +41,6 @@ class SeoServiceProvider extends ServiceProvider
     public function packageBooted()
     {
         $this->bootGate();
-        SEO::Route();
+        SEO::route();
     }
 }
