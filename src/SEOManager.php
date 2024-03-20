@@ -104,12 +104,12 @@ class SEOManager
 
     public function route()
     {
-        // add_action('SEO_SITEMAP_INDEX', function () {
+        // addAction('SEO_SITEMAP_INDEX', function () {
         //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'post']));
         //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'tag']));
         //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'page']));
         // });
-        // add_action('SEO_SITEMAP_POST', function ($sitemap) {
+        // addAction('SEO_SITEMAP_POST', function ($sitemap) {
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 2]));
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 3]));
@@ -118,7 +118,7 @@ class SEOManager
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 6]));
         //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 7]));
         // });
-        // add_action('SEO_SITEMAP_PAGE_POST', function ($page) {
+        // addAction('SEO_SITEMAP_PAGE_POST', function ($page) {
         //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
         //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
         //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
@@ -130,12 +130,12 @@ class SEOManager
                 Route::get('robots.txt', function () {
                     $robots = new Robots();
                     Sitemap::clear();
-                    do_action('SEO_SITEMAP_INDEX');
+                    doAction('SEO_SITEMAP_INDEX');
                     foreach (Sitemap::getSitemaps() as $item) {
                         $robots->sitemap($item->getLocation());
                     }
                     $robots->bot('*', ['disallow' => ['']]);
-                    $robots = apply_filters('SEO_ROBOT_TXT', $robots);
+                    $robots = applyFilters('SEO_ROBOT_TXT', $robots);
                     return response($robots, 200)
                         ->header('Content-Type', 'text/plain');
                 });
@@ -149,26 +149,26 @@ class SEOManager
                 Route::get('sitemap_index.xml', function () {
                     if (!Sitemap::hasCachedView()) {
                         Sitemap::clear();
-                        do_action('SEO_SITEMAP_INDEX');
+                        doAction('SEO_SITEMAP_INDEX');
                     }
-                    do_action('SEO_SITEMAP');
+                    doAction('SEO_SITEMAP');
                     return Sitemap::renderSitemapIndex();
                 })->name('sitemap_index');
 
                 Route::get('sitemap_{sitemap}_{page?}.xml', function ($sitemap, $page = 0) {
                     if (!Sitemap::hasCachedView()) {
                         Sitemap::clear();
-                        do_action('SEO_SITEMAP_PAGE_' . str($sitemap)->upper(), $page);
+                        doAction('SEO_SITEMAP_PAGE_' . str($sitemap)->upper(), $page);
                     }
-                    do_action('SEO_SITEMAP');
+                    doAction('SEO_SITEMAP');
                     return Sitemap::renderSitemap();
                 })->name('sitemap_page');
                 Route::get('sitemap_{sitemap}.xml', function ($sitemap, $page = 0) {
                     if (!Sitemap::hasCachedView()) {
                         Sitemap::clear();
-                        do_action('SEO_SITEMAP_' . str($sitemap)->upper(), $sitemap);
+                        doAction('SEO_SITEMAP_' . str($sitemap)->upper(), $sitemap);
                     }
-                    do_action('SEO_SITEMAP');
+                    doAction('SEO_SITEMAP');
                     return Sitemap::renderSitemapIndex();
                 })->name('sitemap_type');
             });

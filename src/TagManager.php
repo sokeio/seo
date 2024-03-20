@@ -24,7 +24,7 @@ class TagManager implements Renderable
     public function fillSEOData(SEOData $SEOData = null): SEOData
     {
         $SEOData ??= new SEOData();
-        $defaults = apply_filters("SEO_DATA_DEFAULT", [
+        $defaults = applyFilters("SEO_DATA_DEFAULT", [
             'title' => (config('seo.title.infer_title_from_url') ? $this->inferTitleFromUrl() : null),
             'description' => config('seo.description.fallback'),
             'image' => config('seo.image.fallback'),
