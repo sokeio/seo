@@ -8,7 +8,7 @@
     }
   ],
   "require": {
-    "sokeio/laravel": "dev-main"
+    "sokeio/laravel": "^1.0.0"
   },
   "extra": {
     "laravel": {
