@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->string('robots')->nullable();
             $table->string('canonical_url')->nullable();
-
             $table->timestamps();
         });
     }
