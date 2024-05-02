@@ -14,9 +14,9 @@ class TitleTag extends Tag
     ) {
     }
 
-    public static function initialize(?SEOData $SEOData): Tag|null
+    public static function initialize(?SEOData $seodata): Tag|null
     {
-        $title = $SEOData?->title;
+        $title = $seodata?->title;
 
         if (!$title) {
             return null;

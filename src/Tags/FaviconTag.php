@@ -8,9 +8,9 @@ use Illuminate\Support\Collection;
 
 class FaviconTag extends LinkTag
 {
-    public static function initialize(?SEOData $SEOData): static|null
+    public static function initialize(?SEOData $seodata): static|null
     {
-        $favicon = $SEOData?->favicon;
+        $favicon = $seodata?->favicon;
 
         if (!$favicon) {
             return null;

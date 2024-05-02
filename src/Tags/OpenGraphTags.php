@@ -13,56 +13,56 @@ class OpenGraphTags extends Collection implements Renderable
 {
     use RenderableCollection;
 
-    public static function initialize(SEOData $SEOData): static
+    public static function initialize(SEOData $seodata): static
     {
         $collection = new static();
 
-        if ( $SEOData->title ) {
-            $collection->push(new OpenGraphTag('title', $SEOData->title));
+        if ( $seodata->title ) {
+            $collection->push(new OpenGraphTag('title', $seodata->title));
         }
 
-        if ( $SEOData->description ) {
-            $collection->push(new OpenGraphTag('description', $SEOData->description));
+        if ( $seodata->description ) {
+            $collection->push(new OpenGraphTag('description', $seodata->description));
         }
 
-        if ( $SEOData->locale ) {
-            $collection->push(new OpenGraphTag('locale', $SEOData->locale));
+        if ( $seodata->locale ) {
+            $collection->push(new OpenGraphTag('locale', $seodata->locale));
         }
 
-        if ( $SEOData->image ) {
-            $collection->push(new OpenGraphTag('image', $SEOData->image));
+        if ( $seodata->image ) {
+            $collection->push(new OpenGraphTag('image', $seodata->image));
 
-            if ( $SEOData->imageMeta ) {
+            if ( $seodata->imageMeta ) {
                 $collection
-                    ->when($SEOData->imageMeta->width, fn (self $collection): self => $collection->push(new OpenGraphTag('image:width', $SEOData->imageMeta->width)))
-                    ->when($SEOData->imageMeta->height, fn (self $collection): self => $collection->push(new OpenGraphTag('image:height', $SEOData->imageMeta->height)));
+                    ->when($seodata->imageMeta->width, fn (self $collection): self => $collection->push(new OpenGraphTag('image:width', $seodata->imageMeta->width)))
+                    ->when($seodata->imageMeta->height, fn (self $collection): self => $collection->push(new OpenGraphTag('image:height', $seodata->imageMeta->height)));
             }
         }
 
-        $collection->push(new OpenGraphTag('url', $SEOData->url));
+        $collection->push(new OpenGraphTag('url', $seodata->url));
 
-        if ( $SEOData->site_name ) {
-            $collection->push(new OpenGraphTag('site_name', $SEOData->site_name));
+        if ( $seodata->site_name ) {
+            $collection->push(new OpenGraphTag('site_name', $seodata->site_name));
         }
 
-        if ( $SEOData->type ) {
-            $collection->push(new OpenGraphTag('type', $SEOData->type));
+        if ( $seodata->type ) {
+            $collection->push(new OpenGraphTag('type', $seodata->type));
         }
 
-        if ( $SEOData->published_time && $SEOData->type === 'article' ) {
-            $collection->push(new MetaContentTag('article:published_time', $SEOData->published_time->toIso8601String()));
+        if ( $seodata->published_time && $seodata->type === 'article' ) {
+            $collection->push(new MetaContentTag('article:published_time', $seodata->published_time->toIso8601String()));
         }
 
-        if ( $SEOData->modified_time && $SEOData->type === 'article' ) {
-            $collection->push(new MetaContentTag('article:modified_time', $SEOData->modified_time->toIso8601String()));
+        if ( $seodata->modified_time && $seodata->type === 'article' ) {
+            $collection->push(new MetaContentTag('article:modified_time', $seodata->modified_time->toIso8601String()));
         }
 
-        if ( $SEOData->section && $SEOData->type === 'article' ) {
-            $collection->push(new MetaContentTag('article:section', $SEOData->section));
+        if ( $seodata->section && $seodata->type === 'article' ) {
+            $collection->push(new MetaContentTag('article:section', $seodata->section));
         }
 
-        if ( $SEOData->tags && $SEOData->type === 'article' ) {
-            foreach ($SEOData->tags as $tag) {
+        if ( $seodata->tags && $seodata->type === 'article' ) {
+            foreach ($seodata->tags as $tag) {
                 $collection->push(new MetaContentTag('article:tag', $tag));
             }
         }

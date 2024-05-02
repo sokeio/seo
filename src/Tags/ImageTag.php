@@ -7,9 +7,9 @@ use Sokeio\Seo\Support\MetaTag;
 
 class ImageTag extends MetaTag
 {
-    public static function initialize(?SEOData $SEOData): MetaTag|null
+    public static function initialize(?SEOData $seodata): MetaTag|null
     {
-        $image = $SEOData?->image;
+        $image = $seodata?->image;
 
         if (!$image) {
             return null;

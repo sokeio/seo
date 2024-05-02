@@ -24,9 +24,9 @@ abstract class Schema extends Tag
 
     public string $tag = 'script';
 
-    public function __construct(SEOData $SEOData, array $markupBuilders = [])
+    public function __construct(SEOData $seodata, array $markupBuilders = [])
     {
-        $this->initializeMarkup($SEOData, $markupBuilders);
+        $this->initializeMarkup($seodata, $markupBuilders);
 
         $this->pipeThrough($markupBuilders);
 
@@ -35,7 +35,7 @@ abstract class Schema extends Tag
 
     abstract public function generateInner(): string;
 
-    abstract public function initializeMarkup(SEOData $SEOData, array $markupBuilders): void;
+    abstract public function initializeMarkup(SEOData $seodata, array $markupBuilders): void;
 
     public function markup(Closure $transformer): static
     {

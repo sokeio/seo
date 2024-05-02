@@ -21,10 +21,10 @@ class BreadcrumbListSchema extends Schema
         return $this;
     }
 
-    public function initializeMarkup(SEOData $SEOData, array $markupBuilders): void
+    public function initializeMarkup(SEOData $seodata, array $markupBuilders): void
     {
         $this->breadcrumbs = collect([
-            $SEOData->title => $SEOData->url,
+            $seodata->title => $seodata->url,
         ]);
     }
 

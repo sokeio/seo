@@ -12,7 +12,7 @@ class SitemapTag extends Collection implements Renderable
 {
     use RenderableCollection;
 
-    public static function initialize(SEOData $SEOData = null): static
+    public static function initialize(SEOData $seodata = null): static
     {
         $collection = new static();
 

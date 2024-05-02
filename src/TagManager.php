@@ -10,7 +10,7 @@ class TagManager implements Renderable
 {
     public Model $model;
 
-    public SEOData $SEOData;
+    public SEOData $seodata;
 
     public TagCollection $tags;
 
@@ -21,9 +21,9 @@ class TagManager implements Renderable
         );
     }
 
-    public function fillSEOData(SEOData $SEOData = null): SEOData
+    public function fillSEOData(SEOData $seodata = null): SEOData
     {
-        $SEOData ??= new SEOData();
+        $seodata ??= new SEOData();
         $defaults = applyFilters("SEO_DATA_DEFAULT", [
             'title' => (config('seo.title.infer_title_from_url') ? $this->inferTitleFromUrl() : null),
             'description' => config('seo.description.fallback'),
@@ -35,34 +35,34 @@ class TagManager implements Renderable
         ]);
 
         foreach ($defaults as $property => $defaultValue) {
-            if ($SEOData->{$property} === null) {
-                $SEOData->{$property} = $defaultValue;
+            if ($seodata->{$property} === null) {
+                $seodata->{$property} = $defaultValue;
             }
         }
 
-        if ($SEOData->enableTitleSuffix) {
-            $SEOData->title .= config('seo.title.suffix');
+        if ($seodata->enableTitleSuffix) {
+            $seodata->title .= config('seo.title.suffix');
         }
 
-        if ($SEOData->image && !filter_var($SEOData->image, FILTER_VALIDATE_URL)) {
-            $SEOData->imageMeta();
+        if ($seodata->image && !filter_var($seodata->image, FILTER_VALIDATE_URL)) {
+            $seodata->imageMeta();
 
-            $SEOData->image = secure_url($SEOData->image);
+            $seodata->image = secure_url($seodata->image);
         }
 
-        if ($SEOData->favicon && !filter_var($SEOData->favicon, FILTER_VALIDATE_URL)) {
-            $SEOData->favicon = secure_url($SEOData->favicon);
+        if ($seodata->favicon && !filter_var($seodata->favicon, FILTER_VALIDATE_URL)) {
+            $seodata->favicon = secure_url($seodata->favicon);
         }
 
-        if (!$SEOData->url) {
-            $SEOData->url = url()->current();
+        if (!$seodata->url) {
+            $seodata->url = url()->current();
         }
 
-        if ($SEOData->url === url('/') && ($homepageTitle = config('seo.title.homepage_title'))) {
-            $SEOData->title = $homepageTitle;
+        if ($seodata->url === url('/') && ($homepageTitle = config('seo.title.homepage_title'))) {
+            $seodata->title = $homepageTitle;
         }
 
-        return $SEOData->pipethrough(
+        return $seodata->pipethrough(
             SEO::getSEODataTransformers()
         );
     }
@@ -81,12 +81,12 @@ class TagManager implements Renderable
         // initialize the collection again, but this time we pass the model to the initializer.
         // The initializes will pass the generated SEOData to all underlying initializers, ensuring that
         // the tags are always fully up-to-date and no remnants from previous initializations are present.
-        $SEOData = isset($this->model)
+        $seodata = isset($this->model)
             ? (isset($this->model->seo) ? $this->model->seo?->prepareForUsage() : $this->model->prepareForUsage())
             : $this->SEOData;
 
         $this->tags = TagCollection::initialize(
-            $this->fillSEOData($SEOData ?? new SEOData())
+            $this->fillSEOData($seodata ?? new SEOData())
         );
 
         return $this;

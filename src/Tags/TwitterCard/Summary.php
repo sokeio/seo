@@ -12,37 +12,37 @@ class Summary extends Collection implements Renderable
 {
     use RenderableCollection;
 
-    public static function initialize(SEOData $SEOData): static
+    public static function initialize(SEOData $seodata): static
     {
         $collection = new static();
 
-        if ( $SEOData->imageMeta ) {
-            if ( $SEOData->imageMeta->width < 144 ) {
+        if ( $seodata->imageMeta ) {
+            if ( $seodata->imageMeta->width < 144 ) {
                 return $collection;
             }
 
-            if ( $SEOData->imageMeta->height < 144 ) {
+            if ( $seodata->imageMeta->height < 144 ) {
                 return $collection;
             }
 
-            if ( $SEOData->imageMeta->width > 4096 ) {
+            if ( $seodata->imageMeta->width > 4096 ) {
                 return $collection;
             }
 
-            if ( $SEOData->imageMeta->height > 4096 ) {
+            if ( $seodata->imageMeta->height > 4096 ) {
                 return $collection;
             }
         }
 
         $collection->push(new TwitterCardTag('card', 'summary'));
 
-        if ( $SEOData->image ) {
-            $collection->push(new TwitterCardTag('image', $SEOData->image));
+        if ( $seodata->image ) {
+            $collection->push(new TwitterCardTag('image', $seodata->image));
 
-            if ( $SEOData->imageMeta ) {
+            if ( $seodata->imageMeta ) {
                 $collection
-                    ->when($SEOData->imageMeta?->width, fn (self $collection): self => $collection->push(new TwitterCardTag('image:width', $SEOData->imageMeta->width)))
-                    ->when($SEOData->imageMeta?->height, fn (self $collection): self => $collection->push(new TwitterCardTag('image:height', $SEOData->imageMeta->height)));
+                    ->when($seodata->imageMeta?->width, fn (self $collection): self => $collection->push(new TwitterCardTag('image:width', $seodata->imageMeta->width)))
+                    ->when($seodata->imageMeta?->height, fn (self $collection): self => $collection->push(new TwitterCardTag('image:height', $seodata->imageMeta->height)));
             }
         }
 

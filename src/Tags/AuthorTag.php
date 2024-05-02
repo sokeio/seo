@@ -7,9 +7,9 @@ use Sokeio\Seo\Support\MetaTag;
 
 class AuthorTag extends MetaTag
 {
-    public static function initialize(?SEOData $SEOData): MetaTag|null
+    public static function initialize(?SEOData $seodata): MetaTag|null
     {
-        $author = $SEOData?->author;
+        $author = $seodata?->author;
 
         if (!$author) {
             return null;

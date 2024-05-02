@@ -61,7 +61,7 @@ class SEOManager
 
     protected array $tagTransformers = [];
 
-    protected array $SEODataTransformers = [];
+    protected array $seodataTransformers = [];
     protected Model|SEOData|null $source = null;
 
     public function SEODataTransformer(Closure $transformer): static

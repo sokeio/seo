@@ -12,14 +12,14 @@ class RobotsTag extends Collection implements Renderable
 {
     use RenderableCollection;
 
-    public static function initialize(SEOData $SEOData = null): static
+    public static function initialize(SEOData $seodata = null): static
     {
         $collection = new static();
 
         $robotsContent = config('seo.robots.default');
 
         if (!config('seo.robots.force_default')) {
-            $robotsContent = $SEOData?->robots ?? $robotsContent;
+            $robotsContent = $seodata?->robots ?? $robotsContent;
         }
 
         $collection->push(new MetaTag('robots', $robotsContent));

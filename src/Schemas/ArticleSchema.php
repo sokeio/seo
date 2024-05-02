@@ -49,9 +49,9 @@ class ArticleSchema extends Schema
         return $this;
     }
 
-    public function initializeMarkup(SEOData $SEOData, array $markupBuilders): void
+    public function initializeMarkup(SEOData $seodata, array $markupBuilders): void
     {
-        $this->url = $SEOData->url;
+        $this->url = $seodata->url;
 
         $properties = [
             'headline' => 'title',
@@ -62,16 +62,16 @@ class ArticleSchema extends Schema
             'articleBody' => 'articleBody',
         ];
 
-        foreach ($properties as $markupProperty => $SEODataProperty) {
-            if ($SEOData->{$SEODataProperty}) {
-                $this->{$markupProperty} = $SEOData->{$SEODataProperty};
+        foreach ($properties as $markupProperty => $seodataProperty) {
+            if ($seodata->{$seodataProperty}) {
+                $this->{$markupProperty} = $seodata->{$seodataProperty};
             }
         }
 
-        if ($SEOData->author) {
+        if ($seodata->author) {
             $this->authors = [
                 '@type' => 'Person',
-                'name' => $SEOData->author,
+                'name' => $seodata->author,
             ];
         }
     }

@@ -14,33 +14,33 @@ class TwitterCardTags extends Collection implements Renderable
 {
     use RenderableCollection;
 
-    public static function initialize(SEOData $SEOData): ?static
+    public static function initialize(SEOData $seodata): ?static
     {
         $collection = new static();
 
         // No generic image that spans multiple pages
-        if ( $SEOData->image && $SEOData->image !== secure_url(config('seo.image.fallback')) ) {
-            if ( $SEOData->imageMeta?->width - $SEOData->imageMeta?->height - 20 < 0 ) {
-                $collection->push(Summary::initialize($SEOData));
+        if ( $seodata->image && $seodata->image !== secure_url(config('seo.image.fallback')) ) {
+            if ( $seodata->imageMeta?->width - $seodata->imageMeta?->height - 20 < 0 ) {
+                $collection->push(Summary::initialize($seodata));
             }
 
-            if ( $SEOData->imageMeta?->width - 2 * $SEOData->imageMeta?->height - 20 < 0 ) {
-                $collection->push(SummaryLargeImage::initialize($SEOData));
+            if ( $seodata->imageMeta?->width - 2 * $seodata->imageMeta?->height - 20 < 0 ) {
+                $collection->push(SummaryLargeImage::initialize($seodata));
             }
         } else {
             $collection->push(new TwitterCardTag('card', 'summary'));
         }
 
-        if ( $SEOData->title ) {
-            $collection->push(new TwitterCardTag('title', $SEOData->title));
+        if ( $seodata->title ) {
+            $collection->push(new TwitterCardTag('title', $seodata->title));
         }
 
-        if ( $SEOData->description ) {
-            $collection->push(new TwitterCardTag('description', $SEOData->description));
+        if ( $seodata->description ) {
+            $collection->push(new TwitterCardTag('description', $seodata->description));
         }
 
-        if ( $SEOData->twitter_username && $SEOData->twitter_username !== '@' ) {
-            $collection->push(new TwitterCardTag('site', $SEOData->twitter_username));
+        if ( $seodata->twitter_username && $seodata->twitter_username !== '@' ) {
+            $collection->push(new TwitterCardTag('site', $seodata->twitter_username));
         }
 
         return $collection;
