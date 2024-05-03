@@ -18,8 +18,6 @@ abstract class Tag implements Renderable
     public string $tag;
 
     public array $attributesPipeline = [];
-    protected $inner;
-    protected $attributes;
 
     public function render(): View
     {
