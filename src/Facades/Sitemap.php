@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static void clearItems()
  * @method static void clear()
  * @method static bool hasCachedView();
- * 
+ *
  */
 class Sitemap extends Facade
 {

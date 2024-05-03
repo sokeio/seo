@@ -3,7 +3,7 @@
 namespace Sokeio\Seo;
 
 use Sokeio\Seo\Facades\Sitemap;
-use Sokeio\Seo\Submits\SubmitManager;
+use Sokeio\Seo\SubmitManager;
 use Illuminate\Support\Facades\Route;
 use Closure;
 use Illuminate\Database\Eloquent\Model;
@@ -64,9 +64,9 @@ class SEOManager
     protected array $seodataTransformers = [];
     protected Model|SEOData|null $source = null;
 
-    public function SEODataTransformer(Closure $transformer): static
+    public function dataTransformer(Closure $transformer): static
     {
-        $this->SEODataTransformers[] = $transformer;
+        $this->seodataTransformers[] = $transformer;
         return $this;
     }
 
@@ -85,46 +85,25 @@ class SEOManager
         return $this->tagTransformers;
     }
 
-    public function getSEODataTransformers(): array
+    public function getseodataTransformers(): array
     {
-        return $this->SEODataTransformers;
+        return $this->seodataTransformers;
     }
     public function getSource()
     {
         return $this->source;
     }
-    public function SendSitemap($sitemap, $engines = [])
+    public function sendSitemap($sitemap, $engines = [])
     {
         return SubmitManager::sendSitemap($sitemap, $engines);
     }
-    public function IndexNow(string| array $url, $host, $engines = [])
+    public function indexNow(string| array $url, $host, $engines = [])
     {
         return SubmitManager::sendUrl($url, $host, $engines);
     }
 
     public function route()
     {
-        // addAction('SEO_SITEMAP_INDEX', function () {
-        //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'post']));
-        //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'tag']));
-        //     Sitemap::addSitemap(route('sitemap_type', ['sitemap' => 'page']));
-        // });
-        // addAction('SEO_SITEMAP_POST', function ($sitemap) {
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 2]));
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 3]));
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 4]));
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 5]));
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 6]));
-        //     Sitemap::addSitemap(route('sitemap_page', ['sitemap' => 'post', 'page' => 7]));
-        // });
-        // addAction('SEO_SITEMAP_PAGE_POST', function ($page) {
-        //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
-        //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
-        //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
-        //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
-        //     Sitemap::addItem(route('sitemap_page', ['sitemap' => 'post', 'page' => 1]));
-        // });
         if (config('seo.robots.route_enabled')) {
             Route::group(['middleware' => 'web'], function () {
                 Route::get('robots.txt', function () {

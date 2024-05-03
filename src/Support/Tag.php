@@ -12,11 +12,14 @@ abstract class Tag implements Renderable
         'tag',
         'inner',
         'attributesPipeline',
+        'attributes',
     ];
 
     public string $tag;
-    
+
     public array $attributesPipeline = [];
+    protected $inner;
+    protected $attributes;
 
     public function render(): View
     {

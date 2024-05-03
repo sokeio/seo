@@ -63,7 +63,7 @@ class TagManager implements Renderable
         }
 
         return $seodata->pipethrough(
-            SEO::getSEODataTransformers()
+            SEO::getDataTransformers()
         );
     }
 

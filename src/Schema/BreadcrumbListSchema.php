@@ -1,6 +1,6 @@
 <?php
 
-namespace Sokeio\Seo\Schemas;
+namespace Sokeio\Seo\Schema;
 
 use Sokeio\Seo\SEOData;
 use Illuminate\Support\Collection;
