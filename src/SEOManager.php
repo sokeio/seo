@@ -85,7 +85,7 @@ class SEOManager
         return $this->tagTransformers;
     }
 
-    public function getseodataTransformers(): array
+    public function getDataTransformers(): array
     {
         return $this->seodataTransformers;
     }
@@ -101,8 +101,7 @@ class SEOManager
     {
         return SubmitManager::sendUrl($url, $host, $engines);
     }
-
-    public function route()
+    private function routeRobots()
     {
         if (config('seo.robots.route_enabled')) {
             Route::group(['middleware' => 'web'], function () {
@@ -120,6 +119,9 @@ class SEOManager
                 });
             });
         }
+    }
+    private function routeSitemap()
+    {
         if (config('seo.sitemap.route_enabled')) {
             Route::group(['middleware' => 'web'], function () {
                 Route::get('sitemap.xml', function () {
@@ -152,5 +154,10 @@ class SEOManager
                 })->name('sitemap_type');
             });
         }
+    }
+    public function route()
+    {
+        $this->routeRobots();
+        $this->routeSitemap();
     }
 }
