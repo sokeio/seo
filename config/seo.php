@@ -54,7 +54,8 @@ return [
 
     'robots' => [
         /**
-         * Use this setting to specify the default value of the robots meta tag. `<meta name="robots" content="noindex">`
+         * Use this setting to specify the default value of the robots meta tag. 
+         * Example: `<meta name="robots" content="noindex">`
          * Overwrite it with the robots attribute of the SEOData object. `SEOData->robots = 'noindex, nofollow'`
          * "max-snippet:-1" Use n chars (-1: Search engine chooses) as a search result snippet.
          * "max-image-preview:large" Max size of a preview in search results.
