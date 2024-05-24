@@ -23,6 +23,7 @@ abstract class Schema extends Tag
     public array $markupTransformers = [];
 
     public string $tag = 'script';
+    public $inner;
 
     public function __construct(SEOData $seodata, array $markupBuilders = [])
     {
