@@ -26,10 +26,6 @@ class SeoServiceProvider extends ServiceProvider
             ->hasTranslations()
             ->runsMigrations();
     }
-    public function packageRegistered()
-    {
-        $this->extending();
-    }
     public function packageBooted()
     {
         SEO::route();
