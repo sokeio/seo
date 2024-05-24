@@ -71,7 +71,7 @@ return [
          * Default: false
          */
         'force_default' => false,
-        
+
         'route_enabled' => true,
 
         'cache_enabled' => false,
