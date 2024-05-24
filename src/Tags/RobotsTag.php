@@ -21,8 +21,9 @@ class RobotsTag extends Collection implements Renderable
         if (!config('seo.robots.force_default')) {
             $robotsContent = $seodata?->robots ?? $robotsContent;
         }
-
-        $collection->push(new MetaTag('robots', $robotsContent));
+        if ($robotsContent) {
+            $collection->push(new MetaTag('robots', $robotsContent));
+        }
 
         return $collection;
     }
