@@ -12,9 +12,7 @@
       "homepage": "https://github.com/devhau"
     }
   ],
-  "require": {
-    "sokeio/laravel": "^1.0.0"
-  },
+  "require": {},
   "extra": {
     "laravel": {
       "providers": [
